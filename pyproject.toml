@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "dice-bot-pyohio"
+version = "0.1.0"
+description = "Creating a Discord bot using the py-cord library"
+authors = ["Alex Oladele <dragid10@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+py-cord = "^2.5.0"
+python-dotenv = "^1.0.1"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
