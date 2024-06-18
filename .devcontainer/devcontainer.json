@@ -23,7 +23,7 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip3 install --user -r requirements.txt",
-	"postCreateCommand": "sudo apt install fonts-firacode fonts-jetbrains-mono fonts-ibm-plex zsh && poetry install"
+	"postCreateCommand": "sudo apt install fonts-firacode fonts-jetbrains-mono fonts-ibm-plex zsh; poetry install; npm i -g gitmoji-cli"
 
 
 	// Configure tool-specific properties.
