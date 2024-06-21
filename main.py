@@ -21,7 +21,7 @@ async def ping(context: discord.ApplicationContext):
     Args:
         context (discord.ApplicationContext): The discord application context. Represents the context in which a command is being invoked und
     """
-    await context.respond(f"Pong! Latency is {discord_bot.latency}")
+    await context.respond(f"Pong! Latency is {discord_bot.latency:.2f} seconds")
 
 
 # 5. Create a command that the user can invoke to roll the dice
@@ -34,7 +34,7 @@ async def roll(context: discord.ApplicationContext, user_roll: str) -> list[int]
         context (discord.ApplicationContext): The discord application context. Represents the context in which a command is being invoked und
         user_roll (str): The user's roll input
     """
-    
+
     # 5.1. Remove any spaces from the user's roll
     user_roll: str = user_roll.replace(" ", "").strip()
 
@@ -44,17 +44,20 @@ async def roll(context: discord.ApplicationContext, user_roll: str) -> list[int]
     # 6.1 If the user's roll is not valid, send a message to the user
     if not valid_roll:
         await context.respond(f"Invalid roll: {user_roll}.\nPlease enter a valid roll like 1d20, 2d6, or 3d20 + 6.")
-        return
+        return None
+    print("This is a valid roll")
+
 
     # Parse the user's roll since it is valid
     calculated_roll: list[int] = helpers.parse_dice_roll(user_roll)
-
+    print(f"Total result: {calculated_roll}")
+    await context.respond(f"[{user_roll}]={calculated_roll}")
 # ========== END BOT ==========
 
 if __name__ == "__main__":
     # 2. Pass Discord api token to bot (wrap in try/catch block to be safe)
     try:
         # 2.1. The Bot run command will actually start up the discord bot lifecycle
-        discord_bot.run(os.getenv(f"{config.DISCORD_TOKEN}"))
+        discord_bot.run(config.DISCORD_TOKEN)
     except RuntimeError as run_err:
         print(run_err)
